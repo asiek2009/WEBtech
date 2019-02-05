@@ -1,0 +1,58 @@
+<style type="text/css">
+  fieldset{
+    width: 90%;
+    margin: auto;
+    background-color: white;
+  }
+  body{
+    background-image: url(http://funkyimg.com/i/2QVDF.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  h1{
+    text-align: center;
+  }
+
+</style>
+
+
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<fieldset>
+  <% if session[:user_id] %>
+<h1>Materiały laboratoryjne przedmiotu </br>Technologie sieci web</h1>
+<table class = "table table-bordered table-striped">
+   <thead>
+      <tr>
+         <th>Nr</th>
+         <th>Nazwa laboratorium</th>
+         <th>Instrukcja</th>
+      </tr>
+   </thead>
+   <tbody>
+    
+      <% @labs.each do |lab| %>
+         <tr>
+            <td><%= lab.number %></td>
+            <td><%= lab.name %></td>
+            <td><%= link_to "Wyświetl instrukcję", lab.attachment_url %></td>
+        </tr>
+      <% end %>
+   </tbody>
+</table>
+
+<% else %>
+<h1>Technologie sieci web</h1>
+</br>
+</br>
+<h3>Nasza pracownia</h3>
+<span class="image"><%= image_tag( "lab.jpg", :alt => "" )%></span>
+<p>
+
+  </p>
+<% end %>
+</fieldset>

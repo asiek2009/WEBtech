@@ -1,0 +1,29 @@
+<style type="text/css">
+	p{
+		margin: 2em 0 0;
+	}
+</style>
+
+<% if !@lecture.errors.empty? %>
+   <div class = "alert alert-error">
+      
+      <ul>
+         <% @lecture.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+      
+   </div>
+<% end %>
+
+<div class = "well">
+   <%= form_for @lecture, html: { multipart: true } do |f| %>
+   
+      <p>Numer wykładu</p>
+   	  <%= f.number_field :number %>
+      <%= f.text_field :name %>
+      <p>Plik</p>
+      <%= f.file_field :attachment %>
+      <%= f.submit "Save" %>
+   <% end %>
+</div>

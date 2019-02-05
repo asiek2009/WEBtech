@@ -1,0 +1,62 @@
+<head>
+	<style type="text/css">
+	fieldset {
+		width: 50%;
+	    text-align: center;
+	    margin: auto;
+	    background-color: whitesmoke;
+}
+.link, .link2, .link3{
+	border-bottom: 2px solid grey;
+    margin: 0;
+    padding: 15px;
+}
+.link2,  .link3{
+	border-bottom: none;
+}
+.link3
+{
+	border-top: 2px solid grey;
+}
+@media screen and (max-width: 980px){
+	fieldset{
+		width: 90%;
+		margin-top: 40px;
+	}
+}
+body{
+	background: url(http://funkyimg.com/i/2QVDF.jpeg);
+	background-size: cover;
+	background-attachment: fixed;
+
+}
+
+</style>
+</head>
+<fieldset>
+<p id="notice"><%= notice %></p>
+Użytkownik:
+
+<h2>
+<%= @user.name %> <%= @user.surname %>
+</h2>
+
+<p>
+  Adres email (studencki):
+  <strong><%= @user.email %></strong>
+</p>
+
+<p>
+  Moduł nauczania:
+ <strong><%= @user.module %></strong>
+</p>
+
+<a><%= button_to 'Wyloguj', logout_path, :method => :delete %></a>
+
+<p class="link"><%= link_to 'Edytuj konto', edit_user_path(@user) %></p>
+<p class="link2"><%= link_to 'Powrót do strony głównej', root_path %></p>
+<% if @user.email == 'admin' %>
+<p class="link3"><%= link_to 'Przejdź do panelu administracyjnego', admin_index_path %></p>
+<% $admin = 1 %>
+<% end %>
+</fieldset>

@@ -1,0 +1,35 @@
+<div class="block" id="block-login">
+  <h2>Logowanie</h2>
+  <div class="content login">
+    <div class="flash">
+      <% flash.each do |type, message| %>
+        <div class="message notice">
+          <p>
+            <%= message %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  <%= form_tag do %>
+    <fieldset>
+      <div class="group wat-cf">
+        <div class="left">
+          <%= label_tag :email, 'Email Studencki:' %>
+        </div>
+        <div class="right">
+        <%= text_field_tag :email, params[:email] %>
+        </div>
+      </div>
+      <div class="group wat-cf">
+        <div class="left"><%= label_tag :password, 'Hasło:' %></div>
+        <div class="right"><%= password_field_tag :password, params[:password] %></div>
+      </div>
+      <div class="group wat-cf">
+        <div class="right"><div class="button"><%= submit_tag "Zaloguj" %></div></div>
+      </div>
+
+    </fieldset>
+  <% end %>
+  </div>
+  <%= link_to 'Nie masz konta? Zarejestruj się.', new_user_path %>
+</div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portal WEBtech</title>
+    <%= csrf_meta_tags %>
+
+
+
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+<!-- Menu -->
+			<menu id="menu" role="smallmenu">
+			    <a href="#menu" title="Show smallmenu">Show smallmenu</a>
+			    <a href="#" title="Hide smallmenu">Hide smallmenu</a>
+			    <ul>
+			    	<% if session[:user_id] %>
+			        <li><a href="/users/<%=session[:user_id]%>" aria-haspopup="true">Konto</a></li>
+			        <% else %>
+			        <li><%= link_to 'Logowanie', login_url %></li>
+			        <% end %>
+    				<li><a href="/about" aria-haspopup="true">O nas</a> </li>  
+    				<li><a href="/contact" aria-haspopup="true">Kontakt</a> </li>	
+				    <li><a href="/tutorials" aria-haspopup="true">Tutoriale</a></li>
+					<li><a href="/projects" aria-haspopup="true">Projekt</a></li>
+			        <li><a href="">JAVA</a>
+			        	<ul id="rozwijanie-menu">
+			        		<li><a href="/javalectures">Wykład</a></li>
+			        		<li><a href="/javalabs">Laboratorium</a></li>
+			        	</ul>
+			        </li>
+			        <li><a href="">WEB</a>
+			        	<ul id="rozwijanie-menu">
+			        		<li><a href="/lectures">Wykład</a></li>
+			        		<li><a href="/labs">Laboratorium</a></li>
+			        	</ul>
+			        </li>
+    				<li><a href="/" aria-haspopup="true">Strona główna</a> </li>
+    				<img alt="" src="/assets/logo-webtech-77ab6bc506f337f65fd3e2e8bca432b6aada96a3191c134ac72b1324a5ce5fa1.svg" style="width: 12%;">
+			    </ul>
+			</menu>
+  <body>
+    <%= yield %>
+  </body>
+    
+  <!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					
+					<ul class="copyright">
+						<li>© Politechnika Rzeszowska.</li>
+						| <li> 2019 </li> 
+					</ul>
+				</div>
+			</footer>
+
+</html>

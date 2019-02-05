@@ -1,0 +1,67 @@
+<style type="text/css">
+  fieldset{
+    width: 90%;
+    margin: auto;
+    background-color: white;
+  }
+  body{
+    background-image: url(http://funkyimg.com/i/2QVDF.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  article.feature.left{
+    margin-bottom: 2%;
+  }
+  span.image{
+    width: 150px !important;
+    margin: 1em;
+  }
+  div.content{
+    width: 187% !important;
+  }
+</style>
+
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<fieldset>
+  <% if session[:user_id]%>
+  <h1 style="text-align: center;">Wykłady przedmiotu </br>Programowanie w języku Java</h1>
+
+  <table class = "table table-bordered table-striped">
+     <thead>
+        <tr>
+           <th>Nr</th>
+           <th>Opis wykładu</th>
+           <th>Prezentacja</th>
+        </tr>
+     </thead>
+     <tbody>
+        <% @javalectures.each do |f| %>
+           <tr>
+              <td><%= f.number %></td>
+              <td><%= f.name %></td>
+              <td><%= link_to "Wyświetl prezentację", f.attachment_url %></td>
+            </tr>
+        <% end %>
+     </tbody>
+  </table>
+  <% else %>
+  <h1 style="text-align: center;">Problemy poruszane na wykładach przedmiotu </br>Programowanie w języku Java</h1>
+
+        <% @javalectures.each do |f| %>
+          <article class="feature left">
+            <span class="image"><%= image_tag( "https://img.icons8.com/dusk/64/000000/circled-right-2.png", :alt => "" )%></span>
+            <div class="content">
+              <h1>Wykład <%= f.number %>.</h1>
+              <p><%= f.name %></p>
+            </div>
+          </article>
+        <% end %>
+     
+  <% end %>
+
+</fieldset>

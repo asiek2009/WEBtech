@@ -1,0 +1,54 @@
+<style type="text/css">
+  p{
+    margin: 15px 0 0;
+
+  }
+</style>
+
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> - Wystąpił problem z zapisem:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p><b>Studencki adres email </b>(xxxxxx@stud.prz.edu.pl):</p>
+    <%= form.text_field :email, id: :user_email %>
+  </div>
+
+  <div class="field">
+    <p><b>Hasło</b> (minimum 6 zanaków):</p>
+    <%= form.password_field :password, id: :user_password %>
+  </div>
+
+  <div class="field">
+    <p><b>Powtórz hasło:</b></p>
+    <%= form.password_field :password_confirmation, id: :user_password_confirmation %>
+  </div>
+
+  <div class="field">
+    <p><b>Imię:</b></p>
+    <%= form.text_field :name, id: :user_name %>
+  </div>
+
+  <div class="field">
+    <p><b>Nazwisko:</b></p>
+    <%= form.text_field :surname, id: :user_surname %>
+  </div>
+
+  <div class="field">
+    <p><b>Moduł nauczania:</b></p>
+    <%= form.text_field :module, id: :user_module %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

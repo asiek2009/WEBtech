@@ -1,0 +1,30 @@
+<style type="text/css">
+	p{
+		margin: 2em 0 0;
+	}
+</style>
+
+<% if !@javalecture.errors.empty? %>
+   <div class = "alert alert-error">
+      
+      <ul>
+         <% @javalecture.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+      
+   </div>
+<% end %>
+
+<div class = "well">
+   <%= form_for @javalecture, html: { multipart: true } do |f| %>
+   
+      <p>Numer wykładu</p>
+   	  <%= f.number_field :number %>
+      <p>Nazwa wykładu</p>
+      <%= f.text_field :name %>
+      <p>Plik</p>
+      <%= f.file_field :attachment %>
+      <%= f.submit "Save" %>
+   <% end %>
+</div>

@@ -1,0 +1,86 @@
+<style type="text/css">
+  fieldset{
+    width: 90%;
+    margin: auto;
+    background-color: white;
+  }
+  body{
+    background-image: url(http://funkyimg.com/i/2QVDF.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  h1, h2 {
+    text-align: center;
+  }
+
+</style>
+
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<fieldset>
+<h1>Tematy projektów z przedmiotu "Technologie Sieci Web"</h1>
+<p>Tematy zamieszczone poniżej należy realizować zgodnie z modelami aplikacji Web określanymi jako: 
+<b>"Single Page Application (SPA)", "Rich Web Application", "Responsive Web Application" !!! </b>
+Ocena z projektu zależy od wybranego modelu budowy aplikacji Web, jej typu ( system CMS, aplikacja Web, usługa Web, witryna Web ), stopnia skomplikowania aplikacji oraz oryginalności rozwiązań kodowania i programowania.</p>
+<p>Preferowany model aplikacji Web to <b>"Responsive Single Page Web Application" </b></p>
+
+<h2>Tematy premiowane dotyczące sieci WEB</h2>
+<table class = "table table-bordered table-striped">
+   <thead>
+      <tr>
+        <th>Nr</th>
+         <th>Temat projektu</th>
+         <th>Instrukcja</th>
+      </tr>
+   </thead>
+   <tbody>
+      <% @projects.each do |f| %>
+         <tr>
+          <% if f.bonus == true %>
+            <td><%= f.number %></td>
+            <td><%= f.name %></td>
+            <td>
+              <% if f.attachment_url == nil %>
+              Instrukja nie jest dostępna
+              <% else %>
+              <%= link_to "Wyświetl instrukcję", f.attachment_url %>
+                <% end %>
+              </td>
+          <% end %>
+        </tr>
+      <% end %>
+   </tbody>
+</table>
+
+<h2>Tematy standardowe dotyczące sieci Web</h2>
+<table class = "table table-bordered table-striped">
+<thead>
+      <tr>
+        <th>Nr</th>
+         <th>Temat projektu</th>
+         <th>Instrukcja</th>
+      </tr>
+   </thead>
+   <tbody>
+      <% @projects.each do |f| %>
+         <tr>
+          <% if f.bonus == false %>
+            <td><%= f.number %></td>
+            <td><%= f.name %></td>
+            <td>
+              <% if f.attachment_url == nil %>
+              Instrukja nie jest dostępna
+              <% else %>
+              <%= link_to "Wyświetl instrukcję", f.attachment_url %>
+                <% end %>
+              </td>
+          <% end %>
+        </tr>
+      <% end %>
+   </tbody>
+</table>
+</fieldset>
